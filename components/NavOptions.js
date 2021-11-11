@@ -3,6 +3,8 @@ import React from 'react'
 import { FlatList, Text, TouchableOpacity, View, Image } from 'react-native'
 import { Icon } from 'react-native-elements'
 import tw from 'tailwind-react-native-classnames'
+import { selectOrigin } from '../slices/navSlice'
+import { useSelector } from 'react-redux'
 const data = [
     {
         id: '123',
@@ -19,6 +21,7 @@ const data = [
 ]
 
 const navOptions = () => {
+    const origin = useSelector(selectOrigin)
     const navigation = useNavigation()
     return (
         <FlatList
@@ -27,9 +30,10 @@ const navOptions = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
                 <TouchableOpacity
+                disabled={!origin}
                     onPress={() => navigation.navigate(item.screen)}
                     style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}>
-                    <View>
+                    <View style={tw`${!origin && "opacity-20"}`}>
                         <Image
                             style={{ width: 120, height: 120, resizeMode: 'contain' }}
                             source={{ uri: item.image }} />
