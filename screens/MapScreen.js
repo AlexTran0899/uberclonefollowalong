@@ -4,6 +4,7 @@ import tw from 'tailwind-react-native-classnames'
 import Map from '../components/Map'
 import { createStackNavigator } from '@react-navigation/stack'
 import NavigateCard from "../components/NavigateCard"
+import RideOptionsCard from "../components/RideOptionsCard"
 export default function MapScreen() {
     const Stack = createStackNavigator()
     return (
@@ -20,6 +21,13 @@ export default function MapScreen() {
                             headerShown: false
                         }}
                     />
+                    <Stack.Screen
+                        name="RideOptionsCard"
+                        component={RideOptionsCard}
+                        options={{
+                            headerShown: false
+                        }} />
+
                 </Stack.Navigator>
 
             </View>
